@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup & Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2 id="formTitle">Sign Up</h2>
+
+    <div class="form-group" id="nameField">
+      <input type="text" id="name" placeholder="Enter Name" required>
+    </div>
+
+    <div class="form-group">
+      <input type="email" id="email" placeholder="Enter Email" required>
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="password" placeholder="Enter Password" required>
+    </div>
+
+    <button id="submitBtn">Sign Up</button>
+
+    <p id="toggleText">Already have an account? <a href="#" id="toggleLink">Login</a></p>
+  </div>
+
+  <script>
+    const formTitle = document.getElementById("formTitle");
+    const nameField = document.getElementById("nameField");
+    const submitBtn = document.getElementById("submitBtn");
+    const toggleLink = document.getElementById("toggleLink");
+    const toggleText = document.getElementById("toggleText");
+
+    let isLogin = false; // start in signup mode
+
+    // Toggle between signup and login
+    toggleLink.addEventListener("click", () => {
+      isLogin = !isLogin;
+      if (isLogin) {
+        formTitle.textContent = "Login";
+        nameField.style.display = "none";
+        submitBtn.textContent = "Login";
+        toggleText.innerHTML = `Don't have an account? <a href="#" id="toggleLink">Sign Up</a>`;
+      } else {
+        formTitle.textContent = "Sign Up";
+        nameField.style.display = "block";
+        submitBtn.textContent = "Sign Up";
+        toggleText.innerHTML = `Already have an account? <a href="#" id="toggleLink">Login</a>`;
+      }
+    });
+
+    // Handle signup / login
+    submitBtn.addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!email || !password || (!isLogin && !name)) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      if (isLogin) {
+        // LOGIN MODE
+        const storedUser = JSON.parse(localStorage.getItem(email));
+        if (storedUser && storedUser.password === password) {
+          alert(`Welcome back, ${storedUser.name}!`);
+          localStorage.setItem("loggedInUser", email);
+          window.location.href = "ABB.html";
+        } else {
+          alert("Invalid email or password.");
+        }
+      } else {
+        // SIGNUP MODE
+        if (localStorage.getItem(email)) {
+          alert("Email already registered. Try logging in.");
+          return;
+        }
+        const user = { name, email, password };
+        localStorage.setItem(email, JSON.stringify(user));
+        alert("Signup successful! You can now log in.");
+        isLogin = true;
+        formTitle.textContent = "Login";
+        nameField.style.display = "none";
+        submitBtn.textContent = "Login";
+        toggleText.innerHTML = `Don't have an account? <a href="#" id="toggleLink">Sign Up</a>`;
+      }
+    });
+  </script>
+
+</body>
+</html>

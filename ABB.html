@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clothes Stock Dashboard</title>
+  <link rel="stylesheet" href="ABB.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>ClothStock</h2>
+      <ul>
+        <li data-section="dashboard">📦 Dashboard</li>
+        <li data-section="add-stock">➕ Add Stock</li>
+        <li data-section="update-sales">💰 Update Sales</li>
+        <li data-section="sales-recording">📝 Sales Recording</li>
+        <li data-section="reports">🧾 Reports</li>
+        <li data-section="profile">👤 Profile</li>
+        <li><a href="login.html" class="logout">🚪 Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- DASHBOARD SECTION -->
+      <section id="dashboard" class="section">
+        <header>
+          <h1>Dashboard</h1>
+          <input type="text" id="search" placeholder="Search clothes..." />
+        </header>
+
+        <section class="cards">
+          <div class="card">
+            <h3>Total Items</h3>
+            <p id="totalItems">0</p>
+          </div>
+          <div class="card">
+            <h3>In Stock</h3>
+            <p id="inStock">0</p>
+          </div>
+          <div class="card">
+            <h3>Out of Stock</h3>
+            <p id="outStock">0</p>
+          </div>
+        </section>
+
+        <section class="table-section">
+          <h2>Clothes Inventory</h2>
+          <table id="inventoryTable">
+            <thead>
+              <tr>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+      </section>
+
+      <!-- ADD STOCK SECTION -->
+      <section id="add-stock" class="section">
+        <h2>Add New Stock</h2>
+        <form id="addStockForm">
+          <input type="text" id="itemName" placeholder="Item Name" required />
+          <input type="text" id="category" placeholder="Category" required />
+          <input type="number" id="quantity" placeholder="Quantity" required />
+          <input type="number" id="price" placeholder="Price per Item" required />
+          <button type="submit">Add Item</button>
+        </form>
+      </section>
+
+      <!-- UPDATE SALES SECTION -->
+      <section id="update-sales" class="section">
+        <h2>Update Sales</h2>
+        <form id="salesForm">
+          <input type="text" id="saleItem" placeholder="Item Name" required />
+          <input type="number" id="soldQty" placeholder="Quantity Sold" required />
+          <button type="submit">Update Sale</button>
+        </form>
+        <p id="saleMessage"></p>
+      </section>
+
+      <!-- SALES RECORDING SECTION -->
+      <section id="sales-recording" class="section">
+        <h2>Sales Recording</h2>
+        <form id="salesRecordingForm">
+          <input type="text" id="shopName" placeholder="Shop Name" required />
+          <input type="text" id="shopNumber" placeholder="Shop Number" required />
+          <input type="text" id="soldItem" placeholder="Item Sold" required />
+          <input type="number" id="soldQuantity" placeholder="Quantity Sold" required />
+          <input type="number" id="soldPrice" placeholder="Price per Item" required />
+          <button type="submit">Record Sale</button>
+        </form>
+        <h3>Recorded Sales</h3>
+        <table id="salesTable">
+          <thead>
+            <tr>
+              <th>Shop Name</th>
+              <th>Shop Number</th>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Date/Time</th> <!-- NEW COLUMN -->
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- REPORTS SECTION -->
+      <section id="reports" class="section">
+        <h2>Reports</h2>
+        <p>Coming soon...</p>
+      </section>
+
+      <!-- PROFILE SECTION -->
+      <section id="profile" class="section">
+        <h2>Profile</h2>
+        <p>User: Admin</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="ABB.js"></script>
+</body>
+</html>
